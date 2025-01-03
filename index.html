@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <nav >
+  <nav>
     <ul class="nav__links">
       <div class="nav__logo">SKYCONN LITE</div>
       <li class="link"><a href="#home-anchor">HOME</a></li>
@@ -19,6 +19,7 @@
       <li class="link"><a href="booking-history.html">BOOKINGS HISTORY</a></li>
       <li class="link"><a href="#footer">CONTACT US</a></li>
       <li class="link"><a href="javascript:void(0);" onclick="openPopup('login-popup')">LOGIN</a></li>
+      <li class="link"><a href="javascript:void(0);" onclick="openPopup('sign-up-popup')">SIGN UP</a></li> <!-- Added Sign-Up Link -->
     </ul>
   </nav>
   <div class="overlay" id="overlay"></div>
@@ -33,7 +34,6 @@
   <p>Don't have an account? <a href="javascript:void(0);" onclick="openPopup('sign-up-popup')">Sign up here</a></p>
 </div>
 
-
 <!-- Sign-Up Pop-Up -->
 <div class="sign-up-popup" id="sign-up-popup">
   <button class="close-btn" id="close-signup" onclick="closePopup('sign-up-popup')">&times;</button>
@@ -43,7 +43,9 @@
   <input type="password" id="signup-password" placeholder="Password" />
   <input type="password" id="signup-confirm-password" placeholder="Confirm Password" />
   <button class="sign-up-btn" onclick="submitSignup()">Sign Up</button>
+  <p>Already have an account? <a href="javascript:void(0);" onclick="openPopup('login-popup'); closePopup('sign-up-popup')">Login here</a></p>
 </div>
+
 
 
   <header class="section__container header__container">
@@ -52,7 +54,6 @@
   </header>
 
   <section class="section__container booking__container" id="booking-section">
-
     <div class="booking__nav">
       <button class="class-btn">Economy Class</button>
       <button class="class-btn">Business Class</button>
@@ -223,8 +224,8 @@ function submitLogin() {
 
 
 
-    // Sign-up validation function
-    function submitSignup() {
+// Sign-up validation function
+function submitSignup() {
   var username = document.getElementById('signup-username').value;
   var email = document.getElementById('signup-email').value;
   var password = document.getElementById('signup-password').value;
@@ -255,11 +256,8 @@ function submitLogin() {
   closePopup("sign-up-popup");
 }
 
-
   </script>
 
 </body>
 
 </html>
-
-
