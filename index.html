@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+< lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>SKYCONN LITE</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul class="nav__links">
+        <div class="nav__logo">SKYCONN LITE</div>
+        <li class="link"><a href="#home-anchor">Home</a></li>
+        <li class="link"><a href="#about-anchor">About</a></li>
+        <li class="link"><a href="#booking-section">Search Flights</a></li>
+        <li class="link"><a href="bookings_history.html">Bookings History</a></li>
+        <li class="link"><a href="login.html">Login</a></li>
+        <li class="link"><a href="signup.html">Sign Up</a></li>
+        <li class="link"><a href="#footer">Contact Us</a></li>
+
+      </ul>
+    </nav>
+
+    <header class="section__container header__container">
+      <h1 class="section__header" id="home-anchor">Find And Book<br />A Great Experience</h1>
+      <img src="header.jpg" alt="header" />
+    </header>
+
+    <section class="section__container booking__container" id="booking-section">
+
+      <div class="booking__nav">
+        <button class="class-btn">Economy Class</button>
+        <button class="class-btn">Business Class</button>
+        <button class="class-btn">First Class</button>
+
+      </div>
+      <form>
+        <div class="form__group">
+          <span><i class="ri-map-pin-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="text" />
+              <label>Departure Airport</label>
+            </div>
+            <p>From where are you going?</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-map-pin-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="text" />
+              <label>Arrival Airport</label>
+            </div>
+            <p>Your Destination</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-user-3-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="number" />
+              <label>Travellers</label>
+            </div>
+            <p>Add guests</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-calendar-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="date" />
+              <label>Departure Date</label>
+              <i class='bx bxs-calendar'></i>
+            </div>
+            <p>Add date</p>
+          </div>
+        </div>
+
+        <button id="search-btn" class="btn">
+          <i class="ri-search-line"></i>
+        </button>
+
+      </form>
+    </section>
+
+
+
+    <section class="memories" id="about-anchor">
+      <div class="section__container memories__container">
+        <div class="memories__header">
+          <h3 class="section__header"><b>WANDER, EXPLORE, REMEMBER</b></h3>
+          <button class="view__all" onclick="toggleMemories()">View All </button>
+        </div>
+        <div class="memories__grid" id="memoriesGrid">
+          <div class="memories__card">
+            <span><i class="ri-calendar-2-line"></i></span>
+            <h4>Escape and Unwind</h4>
+            <p>Let go of the stress and embrace serenity...</p>
+          </div>
+          <div class="memories__card">
+            <span><i class="ri-shield-check-line"></i></span>
+            <h4>Travel Made Effortless</h4>
+            <p>Travel Made Effortless, the Smart Checklist...</p>
+          </div>
+          <div class="memories__card">
+            <span><i class="ri-bookmark-2-line"></i></span>
+            <h4>Maximize Your Savings</h4>
+            <p>Maximize Your Savings, unbeatable ticket prices...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+    <footer class="footer" id="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h3>SKYCONN LITE</h3>
+          <p>Bringing together exceptional service to make your travel experience seamless and unforgettable</p>
+        </div>
+        <div class="footer__col">
+          <h4>INFORMATION</h4>
+          <p>Home</p>
+          <p>About</p>
+          <p>Search Flights</p>
+          <p>Booking History</p>
+
+        </div>
+        <div class="footer__col">
+          <h4>CONTACT US</h4>
+          <p>supportbyskyconn@gmail.com</p>
+          <p>+91 23564 78450</p>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+    <script>
+      // Function to toggle visibility of "Wander, Explore, Remember" boxes
+      function toggleMemories() {
+        var memoriesGrid = document.getElementById("memoriesGrid");
+        var viewAllButton = document.querySelector(".view__all");
+
+        // Toggle the display of the grid
+        if (memoriesGrid.style.display === "none" || memoriesGrid.style.display === "") {
+          memoriesGrid.style.display = "grid";
+          viewAllButton.textContent = "View Less"; // Change button text
+        } else {
+          memoriesGrid.style.display = "none";
+          viewAllButton.textContent = "View All"; // Change button text back
+        }
+      }
+
+      // Initially hide the "Wander, Explore, Remember" boxes
+      document.getElementById("memoriesGrid").style.display = "none";
+
+    </script>
+
+
+
+
+  </body>
+
+  </html>
