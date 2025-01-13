@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Booking Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#navbar {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background-color: #0b0b0b;
+  border-radius: 15px;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 15px;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  color: rgb(252, 247, 247);
+}
+
+
+#navbar a.split {
+  float: right;
+  background-color: #04AA6D;
+  color: white;
+}
+
+header {
+  background-color: #f7faf9;
+  color: #100f0f;
+  padding: 1rem;
+  text-align: center;
+}
+
+.search-bar {
+  margin-top: 1rem;
+}
+
+.search-bar input, .search-bar button {
+  padding: 0.5rem;
+  margin: 0.2rem;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  background-color: #ff851b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #ff6300;
+}
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column1 {
+  float: left;
+  width: 16.66%;
+  height: 20;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+main {
+  display: flex;
+  text-decoration-color: #409777;
+  padding: 1rem;
+  background: linear-gradient(120deg, #272525, #fad0c4, #8c848a, #321870, #d86fba);
+}
+
+.filters {
+  flex: 1;
+  border-right: 1px solid #0f0f0f;
+  padding-right: 2rem;
+  background:linear-gradient(120deg, #f9f7f7, #a05c4a);;
+  background-size: 100% 100%;
+  border-radius: 15px;
+    width: 100%;
+    height: 56;
+}
+
+.filters h2 {
+  margin-bottom: 1rem;
+}
+
+.filters div {
+  margin-bottom: 1rem;
+}
+
+.filters input, .filters select, .filters button {
+  width: 50%;
+  padding: 0.7rem;
+  margin-top: 1rem;
+}
+
+.filters button {
+  background-color: #2ecc40;
+  color: #fff;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background-color: #28b932;
+}
+
+.flights-list {
+  flex: 3;
+  padding-left: 1rem;
+}
+
+.flights-list h2 {
+  margin-bottom: 1rem;
+}
+
+.list article {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 16px;
+}
+
+.list article .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.list article .info span {
+  margin-bottom: 0.5rem;
+}
+.text{
+            text-align: center;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heading with Lobster Font */
+        .text2 {
+            font-family: 'Lobster', cursive;
+            font-size: 3rem;
+            color: rgb(53, 141, 153);
+            margin-bottom: 1rem;
+        }
+        .text1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  margin-top: 1rem;
+  height: 200;
+}
+
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+
+</style>
+<body>
+    <div id="navbar">
+        <a class="active" href="home">Home</a>
+        <a href="javascript:void(0)">Filters</a>
+        <a class="split" href="file:///C:/Users/jeswi/Desktop/Booking%20Flight/signin.html">SignIn</a>
+        <a class="split" href="file:///C:/Users/jeswi/Desktop/Booking%20Flight/login.html">Login</a>
+      </div>
+
+  <header>
+    <h1>Flight Booking Platform</h1>
+    <div class="search-bar">
+      <input type="text" id="searchFrom" placeholder="From (IATA code)">
+      <input type="text" id="searchTo" placeholder="To (IATA code)">
+      <button id="searchBtn">Search Flights</button>
+    </div>
+  </header>
+  <div class="container">
+    <div class="mySlides">
+      <div class="numbertext">1 / 6</div>
+      <img src="Air India.jpg" style="width:100%" height="400">
+    </div>
+  
+    <div class="mySlides">
+      <div class="numbertext">2 / 6</div>
+      <img src="AmericanAirlines.jpg" style="width:100%" height="400">
+    </div>
+  
+    <div class="mySlides">
+      <div class="numbertext">3 / 6</div>
+      <img src="britishairways.jpg" style="width:100%" height="400">
+    </div>
+      
+    <div class="mySlides">
+      <div class="numbertext">4 / 6</div>
+      <img src="air-canada.jpg" style="width:100%" height="400">
+    </div>
+  
+    <div class="mySlides">
+      <div class="numbertext">5 / 6</div>
+      <img src="Qantas.jpeg" style="width:100%" height="400">
+    </div>
+      
+    <div class="mySlides">
+      <div class="numbertext">6 / 6</div>
+      <img src="air-france.jpg" style="width:100%" height="400">
+    </div>
+      
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+  
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+  
+    <div class="row">
+      <div class="column1">
+        <img class="demo cursor" src="Air India.jpg" style="width:100%" onclick="currentSlide(1)" alt="AI">
+      </div>
+      <div class="column1">
+        <img class="demo cursor" src="AmericanAirlines.jpg" style="width:100%" onclick="currentSlide(2)" alt="AA">
+      </div>
+      <div class="column1">
+        <img class="demo cursor" src="britishairways.jpg" style="width:100%" onclick="currentSlide(3)" alt="BA">
+      </div>
+      <div class="column1">
+        <img class="demo cursor" src="air-canada.jpg" style="width:100%" onclick="currentSlide(4)" alt="AC">
+      </div>
+      <div class="column1">
+        <img class="demo cursor" src="Qantas.jpeg" style="width:100%" onclick="currentSlide(5)" alt="QF">
+      </div>    
+      <div class="column1">
+        <img class="demo cursor" src="air-france.jpg" style="width:100%" onclick="currentSlide(6)" alt="AF">
+      </div>
+    </div>
+  </div>
+  
+
+  <main>
+    <center>
+    <section class="filters">
+      <h2>Filters</h2>
+      <div>
+        <label for="maxPrice">Max Price (€):</label>
+        <input type="number" id="maxPrice" placeholder="Enter max price">
+      </div>
+      <div>
+        <label for="airline">Airline:</label>
+        <select id="airline">
+          <option value="">All</option>
+          <option value="AF">Air France</option>
+          <option value="KL">KLM Royal Dutch Airlines</option>
+          <option value="BA">British Airways</option>
+          <option value="AA">American Airlines</option>
+          <option value="LH">Lufthansa</option>
+          <option value="AC">Air Canada</option>
+          <option value="QF">Qantas</option>
+          <option value="AI">Air India</option>
+          <option value="NH">All Nippon Airways</option>
+        </select>
+      </div>
+      <button id="applyFilters">Apply Filters</button>
+    </section>
+</center>
+    <section class="flights-list">
+      <h2>Available Flights</h2>
+      <div class="list"></div>
+    </section>
+  </main>
+  
+    <div class="text">
+  <h3 class="text1">WHERE ARE YOU PLANNING TO GO NEXT?</h3><br>
+  <h1 class="text2">Save on your journey by exploring these routes with lower fares.
+  </h1>
+  </div>
+<!-- MAIN (Center website) -->
+<div>
+
+
+
+  <h2>Popular Cities</h2>
+  
+  
+  
+  
+  <!-- Portfolio Gallery Grid -->
+  <div class="row">
+    <div class="column nature">
+      <div class="content">
+        <img src="banglore.jpg" alt="Mountains" style="width:100%">
+        <h4>Banglore to Goa</h4>
+        <p>Flight starting at $120..</p>
+      </div>
+    </div>
+    <div class="column nature">
+      <div class="content">
+      <img src="goa.jpg" alt="Lights" style="width:100%">
+        <h4>Goa to Delhi</h4>
+        <p>Flight starting at $240..</p>
+      </div>
+    </div>
+    <div class="column nature">
+      <div class="content">
+      <img src="pune.jpg" alt="Nature" style="width:100%">
+        <h4>Banglore to pune</h4>
+        <p>Flight starting at $400..</p>
+      </div>
+    </div>
+    
+    
+  <!-- END GRID -->
+  </div>
+  
+  <!-- END MAIN -->
+  </div>
+
+  <script>
+    // script.js
+    let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("demo");
+  let captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+
+const flights = [
+  {
+    currency: "EUR",
+    price: 128.67,
+    carrier: "KL",
+    time: "2h 30min",
+    nodes: ["CDG 2017-05-30T09:35+02:00 AMS 2017-05-30T11:15+02:00"],
+  },
+  {
+    currency: "EUR",
+    price: 151.41,
+    carrier: "BA",
+    time: "2h 30min",
+    nodes: ["CDG 2017-05-30T11:40+02:00 AMS 2017-05-30T12:55+02:00"],
+  },
+  {
+    currency: "EUR",
+    price: 204.7,
+    carrier: "AF",
+    time: "2h 30min",
+    nodes: ["CDG 2017-05-30T11:40+02:00 AMS 2017-05-30T12:55+02:00"],
+  },
+  {
+    currency: "USD",
+    price: 350.25,
+    carrier: "AA", // American Airlines
+    time: "6h 45min",
+    nodes: ["JFK 2023-06-15T14:00-04:00 LAX 2023-06-15T20:45-07:00"]
+  },
+  {
+    currency: "GBP",
+    price: 99.99,
+    carrier: "BA", // British Airways
+    time: "1h 20min",
+    nodes: ["LHR 2023-07-10T09:00+01:00 DUB 2023-07-10T10:20+01:00"]
+  },
+  {
+    currency: "EUR",
+    price: 75.50,
+    carrier: "LH", // Lufthansa
+    time: "2h 10min",
+    nodes: ["FRA 2023-08-01T13:00+02:00 MAD 2023-08-01T15:10+02:00"]
+  },
+  {
+    currency: "CAD",
+    price: 450.00,
+    carrier: "AC", // Air Canada
+    time: "8h 30min",
+    nodes: ["YYZ 2023-09-05T17:30-04:00 CDG 2023-09-06T06:00+02:00"]
+  },
+  {
+    currency: "AUD",
+    price: 180.75,
+    carrier: "QF", // Qantas
+    time: "3h 15min",
+    nodes: ["SYD 2023-10-12T07:45+10:00 MEL 2023-10-12T11:00+10:00"]
+  },
+  {
+    currency: "INR",
+    price: 8500.00,
+    carrier: "AI", // Air India
+    time: "2h 30min",
+    nodes: ["DEL 2023-11-22T16:00+05:30 BOM 2023-11-22T18:30+05:30"]
+  },
+  {
+    currency: "JPY",
+    price: 24000,
+    carrier: "NH", // ANA (All Nippon Airways)
+    time: "1h 25min",
+    nodes: ["HND 2023-12-15T10:00+09:00 KIX 2023-12-15T11:25+09:00"]
+  }
+];
+
+const carrierMap = {
+  AF: "Air France",
+  KL: "KLM Royal Dutch Airlines",
+  BA: "British Airways",
+  NH: "All Nippon Airways",
+  AI: " Air India",
+  QF: "Qantas",
+  AC: "Air Canada",
+  LH: "Lufthansa",
+  AA: "American Airlines",
+};
+
+
+  document.getElementById('searchBtn').addEventListener('click', function () {
+    const from = document.getElementById('searchFrom').value;
+    const to = document.getElementById('searchTo').value;
+
+    if (!from || !to) {
+      alert('Please enter both "From" and "To" IATA codes.');
+      return;
+    }
+
+    // Simulate a search or implement API call logic here
+    console.log(`Searching flights from ${from} to ${to}`);
+    alert(`Searching flights from ${from} to ${to}`);
+  });
+
+
+// Function to render flights
+function renderFlights(flights) {
+  const flightList = document.querySelector(".list");
+  flightList.innerHTML = "";
+
+  if (flights.length === 0) {
+    flightList.innerHTML = "<p>No flights found.</p>";
+    return;
+  }
+
+  flights.forEach((flight, index) => {
+    const [from, t1, to, t2] = flight.nodes[0].split(" ");
+    const time1 = new Date(t1).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    const time2 = new Date(t2).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+    const flightHTML = `
+      <article>
+        <div class="info">
+          <span><strong>Airline:</strong> ${carrierMap[flight.carrier]}</span>
+          <span><strong>Route:</strong> ${from} (${time1}) - ${to} (${time2})</span>
+          <span><strong>Duration:</strong> ${flight.time}</span>
+          <span><strong>Price:</strong> €${flight.price.toFixed(2)}</span>
+        </div>
+         <button class="book-btn" onclick="window.location.href='file:///C:/Users/jeswi/Desktop/Booking%20Flight/booking.html?index=${index}'">Book</button>
+      </article>
+    `;
+
+    flightList.innerHTML += flightHTML;
+  });
+
+  document.querySelectorAll(".book-btn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const flightIndex = event.target.dataset.index;
+      alert(`Flight booked: ${JSON.stringify(flights[flightIndex], null, 2)}`);
+    });
+  });
+}
+
+// Filter Flights
+function filterFlights() {
+  const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+  const airline = document.getElementById("airline").value;
+
+  const filteredFlights = flights.filter((flight) => {
+    const matchesPrice = flight.price <= maxPrice;
+    const matchesAirline = !airline || flight.carrier === airline;
+    return matchesPrice && matchesAirline;
+  });
+
+  renderFlights(filteredFlights);
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  renderFlights(flights);
+
+  document.getElementById("applyFilters").addEventListener("click", filterFlights);
+});
+
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+
+</script>
+<footer>
+  <p>&copy; 2024 Flight Booking Platform. All rights reserved.</p>
+</footer>
+</body>
+
+</html>

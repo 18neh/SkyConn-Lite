@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #74ebd5, #9face6);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Booking Container */
+.booking-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Booking Card */
+.booking-card {
+    background: #ffffff;
+    padding: 2em;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Title */
+.title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #74ebd5;
+    box-shadow: 0px 0px 5px rgba(116, 235, 213, 0.5);
+}
+
+/* Book Button */
+.btn-book {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: #74ebd5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-book:hover {
+    background: #9face6;
+}
+
+/* Ticket Container */
+.ticket-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.ticket-card {
+    background: white;
+    padding: 2em;
+    width: 350px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ticket-card h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ticket-card p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.btn-close {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: #9face6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-card">
+            <h1 class="title">Book Your Flight</h1>
+            <form id="flightForm">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="departure">Departure</label>
+                    <input type="text" id="departure" placeholder="Enter departure city" required>
+                </div>
+                <div class="input-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" placeholder="Enter destination city" required>
+                </div>
+                <div class="input-group">
+                    <label for="date">Date of Travel</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="input-group">
+                    <label for="seat">Seat Preference</label>
+                    <select id="seat" required>
+                        <option value="">Select Seat Preference</option>
+                        <option value="Window">Window</option>
+                        <option value="Aisle">Aisle</option>
+                        <option value="Middle">Middle</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-book">Book Flight</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="ticket-container" id="ticketContainer" style="display: none;">
+        <div class="ticket-card">
+            <h2>Flight Ticket Confirmation</h2>
+            <p><strong>Name:</strong> <span id="ticketName"></span></p>
+            <p><strong>Email:</strong> <span id="ticketEmail"></span></p>
+            <p><strong>Departure:</strong> <span id="ticketDeparture"></span></p>
+            <p><strong>Destination:</strong> <span id="ticketDestination"></span></p>
+            <p><strong>Date:</strong> <span id="ticketDate"></span></p>
+            <p><strong>Seat:</strong> <span id="ticketSeat"></span></p>
+            <button class="btn-close" onclick="closeTicket()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission
+document.getElementById("flightForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Collect form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const departure = document.getElementById("departure").value;
+    const destination = document.getElementById("destination").value;
+    const date = document.getElementById("date").value;
+    const seat = document.getElementById("seat").value;
+
+    // Populate ticket details
+    document.getElementById("ticketName").textContent = name;
+    document.getElementById("ticketEmail").textContent = email;
+    document.getElementById("ticketDeparture").textContent = departure;
+    document.getElementById("ticketDestination").textContent = destination;
+    document.getElementById("ticketDate").textContent = date;
+    document.getElementById("ticketSeat").textContent = seat;
+
+    // Show ticket confirmation
+    document.getElementById("ticketContainer").style.display = "flex";
+});
+
+// Close ticket confirmation
+function closeTicket() {
+    document.getElementById("ticketContainer").style.display = "none";
+}
+
+    </script>
+</body>
+</html>
